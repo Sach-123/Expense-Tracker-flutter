@@ -16,9 +16,7 @@ class _MyChartState extends State<MyChart> {
     );
   }
 
-  List<BarChartGroupData> showingGroups() => List.generate(8, (i) {
-    
-  } );
+  
 
   BarChartData mainBarData() {
     return BarChartData(
@@ -43,7 +41,6 @@ class _MyChartState extends State<MyChart> {
         ),
         borderData: FlBorderData(show: false),
         gridData: FlGridData(show: false),
-        barGroups: showingGroups(),
       );
   }
 
