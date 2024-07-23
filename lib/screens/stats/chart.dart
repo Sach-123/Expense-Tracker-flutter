@@ -16,32 +16,30 @@ class _MyChartState extends State<MyChart> {
     );
   }
 
-  
-
   BarChartData mainBarData() {
     return BarChartData(
-        titlesData: FlTitlesData(
-          show: true,
-          rightTitles: AxisTitles(
-            sideTitles: SideTitles(showTitles: false),
-          ),
-          topTitles: AxisTitles(
-            sideTitles: SideTitles(showTitles: false),
-          ),
-          bottomTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: true,
-              reservedSize: 38,
-              getTitlesWidget: getTiles,
-            ),
-          ),
-          leftTitles: AxisTitles(
-            sideTitles: SideTitles(showTitles: true),
+      titlesData: FlTitlesData(
+        show: true,
+        rightTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        topTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            reservedSize: 38,
+            getTitlesWidget: getTiles,
           ),
         ),
-        borderData: FlBorderData(show: false),
-        gridData: FlGridData(show: false),
-      );
+        leftTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: true),
+        ),
+      ),
+      borderData: FlBorderData(show: false),
+      gridData: const FlGridData(show: false),
+    );
   }
 
   Widget getTiles(double value, TitleMeta meta) {
@@ -85,9 +83,9 @@ class _MyChartState extends State<MyChart> {
         break;
     }
     return SideTitleWidget(
-      child: text,
       axisSide: meta.axisSide,
       space: 16,
+      child: text,
     );
   }
 

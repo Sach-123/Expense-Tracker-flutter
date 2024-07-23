@@ -13,15 +13,15 @@ class StatScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Transaction",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width,
-            child: MyChart(),
+            child: const MyChart(),
           )
         ],
       ),

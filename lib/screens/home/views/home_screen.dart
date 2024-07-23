@@ -1,9 +1,12 @@
 import 'dart:math';
 
+import 'package:expense_repository/expense_repository.dart';
+import 'package:expense_tracker/screens/add_expense/blocs/create_category_bloc/create_category_bloc.dart';
 import 'package:expense_tracker/screens/add_expense/views/add_expense.dart';
 import 'package:expense_tracker/screens/home/views/main_screen.dart';
 import 'package:expense_tracker/screens/stats/stats.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int index = 0;
   late Color selectedItem = Colors.blue;
-  Color UnSelectedItem = Colors.grey;
+  Color unSelectedItem = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home,
-                    color: index == 0 ? selectedItem : UnSelectedItem),
+                    color: index == 0 ? selectedItem : unSelectedItem),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
                   icon: Icon(Icons.auto_graph,
-                      color: index == 1 ? selectedItem : UnSelectedItem),
+                      color: index == 1 ? selectedItem : unSelectedItem),
                   label: "Stats")
             ]),
       ),
@@ -50,7 +53,13 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddExpense()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => BlocProvider(
+                        create: (context) =>
+                            CreateCategoryBloc(FirebaseExpenseRepo()),
+                        child: const AddExpense(),
+                      )));
         },
         shape: const CircleBorder(),
         child: Container(
@@ -67,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ])),
             child: const Icon(Icons.add)),
       ),
-      body: index == 0 ? MainScreen() : StatScreen(),
+      body: index == 0 ? const MainScreen() : const StatScreen(),
     );
   }
 }
